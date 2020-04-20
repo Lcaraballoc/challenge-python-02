@@ -1,11 +1,30 @@
 # Resolve the problem!!
 import string
+import random
 
 SYMBOLS = list('!"#$%&\'()*+,-./:;?@[]^_`{|}~')
 
 
 def generate_password():
-    # Start coding here
+    password=''
+    pointer=0
+
+    for i in range(random.randint(8, 16)):
+        if(pointer == 0):
+            password += random.choice(string.ascii_lowercase)
+            pointer = 1
+        elif(pointer == 1):
+            password += random.choice(string.ascii_uppercase)
+            pointer = 2
+        elif(pointer== 2):
+            password += random.choice(string.digits)
+            pointer = 3
+        else:
+            password += SYMBOLS[random.randint(0, len(SYMBOLS)-1)]
+            pointer = 0
+
+    password = ''.join(random.sample(password, len(password)))
+    return password
 
 
 def validate(password):
